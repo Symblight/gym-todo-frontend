@@ -1,0 +1,6 @@
+{
+    "extends": "@atomix/eslint-config",
+    "rules": {
+      "linebreak-style": 0
+      }
+}
