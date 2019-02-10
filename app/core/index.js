@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components'
 import { ApolloProvider } from 'react-apollo'
 import ApolloClient from 'apollo-boost'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HashRouter as Router } from 'react-router-dom'
 
-import theme from 'ui/theme/theme'
+import Theme from 'ui/theme/theme'
 import App from './App'
 
 
@@ -21,11 +21,11 @@ const client = new ApolloClient({
 
 const render = (Component) => ReactDOM.render(
   <ApolloProvider client={client}>
-    <Router>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={Theme}>
+      <Router>
         <Component />
-      </ThemeProvider>
-    </Router>
+      </Router>
+    </ThemeProvider>
   </ApolloProvider>,
   rootElement,
 )

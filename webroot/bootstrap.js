@@ -3,5 +3,6 @@ window.config = {
   apiGraphURL: 'http://localhost:3333/graphql',
 
   defaultColorTheme: 'light',
-  defaultStyleTheme: 'primary'
+  defaultStyleTheme: 'primary',
+  authorURL: 'https://github.com/symblight',
 }

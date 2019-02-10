@@ -1,3 +1,6 @@
+import { reversePalette } from 'styled-theme/composer'
+
+
 const theme = {}
 
 theme.palette = {
@@ -5,7 +8,7 @@ theme.palette = {
   secondary: ['#c2185b', '#e91e63', '#f06292', '#f8bbd0'],
   danger: ['#d32f2f', '#f44336', '#f8877f', '#ffcdd2'],
   alert: ['#ffa000', '#ffc107', '#ffd761', '#ffecb3'],
-  success: ['#388e3c', '#4caf50', '#7cc47f', '#c8e6c9'],
+  success: ['#27ae60', '#2ecc71', '#6dd298', '#c8e6c9'],
   white: ['#fff', '#fff', '#eee'],
   grayscale: [
     '#212121',
@@ -19,8 +22,10 @@ theme.palette = {
   ],
 }
 
+theme.reversePalette = reversePalette(theme.palette)
+
 theme.fonts = {
-  primary: 'Helvetica Neue, Helvetica, Roboto, sans-serif',
+  primary: '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-seri',
   pre: 'Consolas, Liberation Mono, Menlo, Courier, monospace',
   quote: 'Georgia, serif',
 }
