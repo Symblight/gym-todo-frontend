@@ -13,14 +13,27 @@ export default `
     }
 
     body {
-        font-family:  Circular, Helvetica, Arial, sans-serif;
+        font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-seri;
     }
 
     a:hover {
         text-decoration: none;
-     }
+    }
  
-     a:visited {
-         color: inherit;
-     } 
+    a:visited {
+        color: inherit;
+    }
+      
+    ul {
+        list-style: none;
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+        margin-left: 0;
+    }
+
+    li {
+        text-decoration: none;
+        list-style: none;
+    }
 `

@@ -20,6 +20,15 @@
       "class-methods-use-this": 0,
       "no-unused-expressions": 0,
       "radix":"off",
-      "linebreak-style": 0
+      "linebreak-style": 0,
+      "operator-linebreak": [
+        "error",
+        "after",
+        {
+          "overrides": {
+            ":": "before"
+          }
+        }
+      ]
     }
 }
