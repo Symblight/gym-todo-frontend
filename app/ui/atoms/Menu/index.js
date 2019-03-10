@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import uuid from 'uuid'
@@ -17,102 +17,88 @@ const POSITION = {
   vertical: 'more-vertical',
 }
 
-export class Menu extends PureComponent {
-  static propTypes = {
-    opened: PropTypes.bool,
-    position: PropTypes.string,
-    options: PropTypes.arrayOf(Object),
-    onClick: PropTypes.func,
-    palette: PropTypes.string,
-    transparent: PropTypes.bool,
+const useOnClickOutside = (ref, handler) => {
+  useEffect(
+    () => {
+      const listener = (event) => {
+        if (!ref.current || ref.current.contains(event.target)) {
+          return
+        }
+        handler(event)
+      }
+
+      window.addEventListener('click', listener, false)
+      return () => {
+        window.removeEventListener('click', listener, false)
+      }
+    },
+
+    [ref, handler],
+  )
+}
+
+export const Menu = ({
+  onClick,
+  position,
+  palette,
+  options,
+  ...props
+}) => {
+  const [toggle, setToggle] = useState(false)
+
+  const menuRef = useRef()
+
+  const onToggle = () => {
+    setToggle(!toggle)
   }
 
-  static defaultProps = {
-    position: 'horizontal',
-    palette: 'white',
-    options: [],
-  }
+  useOnClickOutside(menuRef, () => setToggle(false))
 
-  state = {
-    toggle: false,
-  }
-
-  componentWillUpdate() {
-    window.addEventListener('click', this.onWindowClick, false)
-  }
-
-
-  componentWillUnmount() {
-    window.removeEventListener('click', this.onWindowClick, false)
-  }
-
-
-  onToggle = () => {
-    const { toggle } = this.state
-
-    this.setState({
-      toggle: !toggle,
-    })
-  }
-
-  onWindowClick = (event) => {
-    if (this.node.contains(event.target)) {
-      return
-    }
-
-    this.setState({
-      toggle: false,
-    })
-  }
-
-  onClick = (option, event) => {
-    const { onClick } = this.props
-
+  const handleClick = (option, event) => {
     if (!option.disabled) {
-      this.onToggle()
+      onToggle()
       if (onClick) {
         onClick(option, event)
       }
     }
   }
 
-  renderOptions() {
-    const { options, palette } = this.props
+  return (
+    <Wrapper
+      ref={menuRef}
+      {...props}
+    >
+      <Icon height={25} icon={POSITION[position]} onClick={onToggle} />
+      {toggle ?
+        <WrapperOptions>
+          {options ? options.map((option) => (
+            <OptionsItem
+              palette={palette}
+              disabled={option.disabled}
+              key={uuid(UUID_ID)}
+              onClick={(event) => handleClick(option, event)}
+            >
+              {option.title}
+            </OptionsItem>
+            )) : null
+          }
+        </WrapperOptions>
+          : null}
+    </Wrapper>
+  )
+}
 
-    return (
-      <WrapperOptions>
-        {options.map((option) => (
-          <OptionsItem
-            palette={palette}
-            disabled={option.disabled}
-            key={uuid(UUID_ID)}
-            onClick={(event) => this.onClick(option, event)}
-          >
-            {option.title}
-          </OptionsItem>
-          ))
-         }
-      </WrapperOptions>
-    )
-  }
+Menu.propTypes = {
+  opened: PropTypes.bool,
+  position: PropTypes.string,
+  options: PropTypes.arrayOf(Object),
+  onClick: PropTypes.func,
+  palette: PropTypes.string,
+  transparent: PropTypes.bool,
+}
 
-  render() {
-    const {
-      position,
-      ...props
-    } = this.props
-    const { toggle } = this.state
-
-    return (
-      <Wrapper
-        ref={(node) => {
-        this.node = node
-      }}
-        {...props}
-      >
-        <Icon height={25} icon={POSITION[position]} onClick={this.onToggle} />
-        {toggle ? this.renderOptions() : null}
-      </Wrapper>
-    )
-  }
+Menu.defaultProps = {
+  position: 'horizontal',
+  palette: 'white',
+  options: [],
 }

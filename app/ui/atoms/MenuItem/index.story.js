@@ -13,7 +13,7 @@ storiesOf('Atoms/MenuItem', module)
     <MenuItem icon={<Icon icon='user' />} label="Schedule" />
   ))
   .add('Link', () => (
-    <MenuItem to="/" icon={<Icon icon='user' />} label="Schedule" />
+    <MenuItem to="/home" icon={<Icon icon='user' />} label="Schedule" />
   ))
   .add('Disabled', () => (
     <MenuItem disabled icon={<Icon icon='user' />} label="Schedule" />

@@ -18,13 +18,13 @@ export const MenuItem = ({
   palette,
   disabled,
   to,
+  id,
   ...props
 }) => {
-
   const handleToggle = (event) => {
     if (!disabled) {
       if (onClick) {
-        onClick(!active, event.target)
+        onClick(id, event.target)
       }
     }
   }
@@ -42,7 +42,7 @@ export const MenuItem = ({
       >
         <Content>
           {icon}
-          <ItemText>{label}</ItemText>
+          <ItemText active={active}>{label}</ItemText>
         </Content>
       </StyledLink>
     )

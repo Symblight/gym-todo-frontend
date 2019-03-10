@@ -30,6 +30,9 @@ storiesOf('Atoms/Text input', module)
   .add('Inline', () => (
     <div style={{ width: 400 }}><Input inline label="name" /></div>
   ))
+  .add('Password', () => (
+    <div style={{ width: 400 }}><Input type="password" inline label="password" /></div>
+  ))
 
 storiesOf('Atoms/TextArea input', module)
   .add('Default', () => (

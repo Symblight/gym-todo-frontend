@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { Menu } from './index'
+import { Menu } from 'ui'
 
 
 const OPTIONS = [
@@ -12,7 +12,6 @@ const OPTIONS = [
   {
     id: 1,
     title: 'text2',
-    disabled: true,
   },
   {
     id: 2,

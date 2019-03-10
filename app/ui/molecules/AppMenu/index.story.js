@@ -11,17 +11,17 @@ const OPTIONS = [
     icon: <Icon icon='calendar' />,
   },
   {
-    id: 0,
+    id: 1,
     label: 'Workouts',
     icon: <Icon icon='dumbbell' />,
   },
   {
-    id: 0,
+    id: 2,
     label: 'Excercise',
     icon: <Icon icon='energy' />,
   },
   {
-    id: 0,
+    id: 3,
     label: 'Profile',
     icon: <Icon icon='user' />,
   },
